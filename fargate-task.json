@@ -1,0 +1,33 @@
+{
+    "family": "cgiprofessionalnetcoreservices", 
+    "networkMode": "awsvpc", 
+    "containerDefinitions": [
+        {
+            "name": "restservices", 
+            "image": "iomega/cgiprofessionalnetcoreservicesjenkins:latest", 
+            "portMappings": [
+                {
+                    "containerPort": 9090, 
+                    "hostPort": 9090, 
+                    "protocol": "tcp"
+                }
+            ],
+	    "environment":[
+		    {
+			    "name":"ASPNETCORE_URLS",
+			    "value":"http://*:80"
+		    },
+		    {
+			    "name":"CRMSystemDBConnectionString",
+			    "value":"ConnectionString"
+		    },
+	    ],
+            "essential": true
+		}
+    ], 
+    "requiresCompatibilities": [
+        "FARGATE"
+    ], 
+    "cpu": "256", 
+    "memory": "512"
+}
